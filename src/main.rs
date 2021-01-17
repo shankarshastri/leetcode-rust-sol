@@ -1,3 +1,5 @@
+mod ownership;
+
 fn main() {
     pub fn get_maximum_generated(n: i32) -> i32 {
         if n == 0 {
@@ -18,5 +20,13 @@ fn main() {
             *array.iter().max().unwrap_or(&0)
         }
     }
+
+    pub fn find_kth_largest(nums: Vec<i32>, k: i32) -> i32 {
+        use std::cmp::Reverse;
+        let mut num_clone = nums.clone();
+        num_clone.sort_by_key(|w| Reverse(*w));
+        num_clone[(k - 1) as usize]
+    }
+
     println!("{}", get_maximum_generated(7))
 }
